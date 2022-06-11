@@ -3,10 +3,15 @@ extern crate mime;
 
 use iron::prelude::*;
 use iron::status;
+use router::Router;
 
 fn main() {
+    let mut router = Router::new();
+
+    router.get("/", get_form, "root");
+
     println!("Serving on http://localhost:3000...");
-    Iron::new(get_form).http("localhost:3000").unwrap();
+    Iron::new(router).http("localhost:3000").unwrap();
 }
 
 fn get_form(_request: &mut Request) -> IronResult<Response> {
