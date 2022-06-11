@@ -1,0 +1,1 @@
+/home/alexander/ultron/practi_code/rust_lang/rust_progarmming/chapter_2/iron_greatset-common-divisor/target/debug/iron_greatset-common-divisor: /home/alexander/ultron/practi_code/rust_lang/rust_progarmming/chapter_2/iron_greatset-common-divisor/src/main.rs
