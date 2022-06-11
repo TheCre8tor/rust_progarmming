@@ -25,6 +25,7 @@ fn main() {
     let mut d = numbers[0];
 
     for m in &numbers[1..] {
+        println!("D: {}, M: {:?}, ", d, m);
         d = gcd(d, *m);
     }
 
