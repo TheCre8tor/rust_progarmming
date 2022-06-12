@@ -11,6 +11,7 @@ fn main() {
     let mut router = Router::new();
 
     router.get("/", get_form, "root");
+    router.post("/gcd", post_gcd, "gcd");
 
     println!("Serving on http://localhost:3000...");
     Iron::new(router).http("localhost:3000").unwrap();
@@ -35,7 +36,7 @@ fn get_form(_request: &mut Request) -> IronResult<Response> {
     Ok(response)
 }
 
-fn post_gcd(request: &mut Request) -> IronRequest<Response> {
+fn post_gcd(request: &mut Request) -> IronResult<Response> {
     let mut response = Response::new();
 
     let form_data = match request.get_ref::<UrlEncodedBody>() {
@@ -63,8 +64,9 @@ fn post_gcd(request: &mut Request) -> IronRequest<Response> {
             Ok(n) => numbers.push(n),
             Err(_) => {
                 response.set_mut(status::BadRequest);
+                response.set_mut(mime!(Text/Html; Charset=Utf8));
                 response.set_mut(format!(
-                    "Value for 'n' parameter not a number: {:?}\n",
+                    "Value for 'n' parameter not a number: <b>{:?}</b>\n",
                     unparsed
                 ));
                 return Ok(response);
@@ -77,6 +79,15 @@ fn post_gcd(request: &mut Request) -> IronRequest<Response> {
     for m in &numbers[1..] {
         d = gcd(d, *m);
     }
+
+    response.set_mut(status::Ok);
+    response.set_mut(mime!(Text/Html; Charset=Utf8));
+    response.set_mut(format!(
+        "The greatest common divisor of the numbers {:?} is <b>{}</b>\n",
+        numbers, d
+    ));
+
+    Ok(response)
 }
 
 fn gcd(mut n: u64, mut m: u64) -> u64 {
