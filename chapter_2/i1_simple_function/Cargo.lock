@@ -9,7 +9,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a0908d9e688507daab476402994f0d4d24d25e66bf65a2c371178eef4f82d7c2"
 
 [[package]]
-name = "simple_function"
+name = "i1_simple_function"
 version = "0.1.0"
 dependencies = [
  "assert",

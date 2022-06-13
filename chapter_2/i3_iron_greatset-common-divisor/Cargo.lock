@@ -103,6 +103,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "i3_iron_greatset-common-divisor"
+version = "0.1.0"
+dependencies = [
+ "iron",
+ "mime",
+ "router",
+ "urlencoded",
+]
+
+[[package]]
 name = "idna"
 version = "0.1.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -129,16 +139,6 @@ dependencies = [
  "plugin",
  "typemap",
  "url",
-]
-
-[[package]]
-name = "iron_greatset-common-divisor"
-version = "0.1.0"
-dependencies = [
- "iron",
- "mime",
- "router",
- "urlencoded",
 ]
 
 [[package]]
