@@ -1,26 +1,65 @@
+use crossbeam;
+use image::png::PNGEncoder;
+use image::ColorType;
 use num::Complex;
+use std::fs::File;
+use std::io::Result;
+use std::io::Write;
 use std::{assert, str::FromStr};
 
 fn main() {
-    println!("Hello, world!");
+    let args: Vec<String> = std::env::args().collect();
 
-    square_loop(2.3);
-}
+    if args.len() != 5 {
+        writeln!(
+            std::io::stderr(),
+            "Usage: mandelbrot FILE PIXELS UPPERLEFT LOWERRIGHT"
+        )
+        .unwrap();
 
-fn square_loop(c: f64) {
-    let x = 0.;
+        writeln!(
+            std::io::stderr(),
+            "Example: {} mandel.png 1000x750 -1.20,0.35 -1,0.20",
+            args[0]
+        )
+        .unwrap();
 
-    loop {
-        println!("{}", x = x * x + c);
+        std::process::exit(1);
     }
-}
 
-fn complex_square_add_loop(c: Complex<f64>) {
-    let mut z = Complex { re: 0.0, im: 0.0 };
+    let bounds = parse_pair(&args[2], 'x').expect("error parsing image dimensions");
+    let upper_left = parse_complex(&args[3]).expect("error parsing upper left corner point");
+    let lower_right = parse_complex(&args[4]).expect("error parsing lower right corner point");
 
-    loop {
-        println!("{}", z = z * z + c)
+    let mut pixels = vec![0; bounds.0 * bounds.1];
+
+    // nonconcurrent version ->
+    // render(&mut pixels, bounds, upper_left, lower_right);
+
+    // concurrent version ->
+    let threads = 8;
+    let rows_per_band = bounds.1 / threads + 1;
+
+    {
+        let bands: Vec<&mut [u8]> = pixels.chunks_mut(rows_per_band * bounds.0).collect();
+
+        crossbeam::scope(|spawner| {
+            for (i, band) in bands.into_iter().enumerate() {
+                let top = rows_per_band * i;
+                let height = band.len() / bounds.0;
+                let band_bounds = (bounds.0, height);
+                let band_upper_left = pixel_to_point(bounds, (0, top), upper_left, lower_right);
+                let band_lower_right =
+                    pixel_to_point(bounds, (bounds.0, top + height), upper_left, lower_right);
+
+                spawner.spawn(move || {
+                    render(band, band_bounds, band_upper_left, band_lower_right);
+                });
+            }
+        });
     }
+
+    write_image(&args[1], &pixels, bounds).expect("error writting PNG file");
 }
 
 /// Try to determine if `c` is in the Mandelbrot set, using at most `limit`
@@ -105,8 +144,8 @@ fn pixel_to_point(
 /// arguments specify points on the complex plane corresponding to the upper-
 /// left and lower-right corners of the pixel buffer.
 fn render(
-    bounds: (usize, usize),
     pixels: &mut [u8],
+    bounds: (usize, usize),
     upper_left: Complex<f64>,
     lower_right: Complex<f64>,
 ) {
@@ -122,6 +161,32 @@ fn render(
             };
         }
     }
+}
+
+/// Write the buffer `pixels`, whose dimensions are given by `bounds`, to the
+/// file named `filename`.
+fn write_image(filename: &str, pixels: &[u8], bounds: (usize, usize)) -> Result<()> {
+    /* `?` operator makes checking the OK(x) and Err(e) Result
+       variant easier to handle. Instead of spelling everything
+       out, and writing:
+
+       let output = match File::create(filename) {
+           Ok(f) => f,
+           Err(e) => return Err(e)
+       };
+    */
+
+    let output = File::create(filename)?;
+
+    let encoder = PNGEncoder::new(output);
+    encoder.encode(
+        &pixels,
+        bounds.0 as u32,
+        bounds.1 as u32,
+        ColorType::Gray(8),
+    )?;
+
+    Ok(())
 }
 
 #[test]
