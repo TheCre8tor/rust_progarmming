@@ -16,5 +16,13 @@ fn main() {
            It is a dynamically allocated, growable sequence of
            values of type T.
 
+        3. Slice Type: &[T] and &mut [T]
+
+           &[T] -> Shared slice of Ts.
+           &mut [T] -> Mutable slice of Ts.
+
+           slices are references to a series of elements that are
+           part of some other value, like an array or vector.
+
     */
 }
