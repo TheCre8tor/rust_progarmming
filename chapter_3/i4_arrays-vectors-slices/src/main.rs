@@ -12,5 +12,9 @@ fn main() {
            It is not growable and you can't append new elements
            or shrink it.
 
+        2. Vector Type: Vec<T> represent a vector of Ts.
+           It is a dynamically allocated, growable sequence of
+           values of type T.
+
     */
 }
