@@ -18,12 +18,14 @@ fn main() {
 
         2. Boxes: Box::new() is the simplest way to allocate a
            value on the heap.
+
+        3. Raw Pointers:
     */
 
-    allocate_values();
+    easy_allocate_values();
 }
 
-fn allocate_values() {
+fn easy_allocate_values() {
     let stuffs = (12, "eggs");
 
     // I allocate memory on the heap and then
