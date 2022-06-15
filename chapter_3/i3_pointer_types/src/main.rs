@@ -19,4 +19,16 @@ fn main() {
         2. Boxes: Box::new() is the simplest way to allocate a
            value on the heap.
     */
+
+    allocate_values();
+}
+
+fn allocate_values() {
+    let stuffs = (12, "eggs");
+
+    // I allocate memory on the heap and then
+    // places stuffs of type turple into it.
+    let alloc = Box::new(stuffs);
+
+    println!("{:?}", alloc);
 }
