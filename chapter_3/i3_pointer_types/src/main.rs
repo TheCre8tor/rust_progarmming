@@ -15,5 +15,8 @@ fn main() {
            Rust track the ownership and lifetime of values, so
            mistakes like dangling pointers, double frees, and
            pointer invalidation are ruled out at compile time.
+
+        2. Boxes: Box::new() is the simplest way to allocate a
+           value on the heap.
     */
 }
