@@ -27,9 +27,7 @@ fn main() {
            ? A mutable slice &mut [T] allows read and modification of
            ? elements, but can't be shared.
 
-           ? A
-
-
-
+           ? A shared slice &[T] lets you share access among several
+           ? readers, but doesn't let you modify elements.
     */
 }
