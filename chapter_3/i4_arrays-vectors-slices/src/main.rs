@@ -24,5 +24,12 @@ fn main() {
            slices are references to a series of elements that are
            part of some other value, like an array or vector.
 
+           ? A mutable slice &mut [T] allows read and modification of
+           ? elements, but can't be shared.
+
+           ? A
+
+
+
     */
 }
