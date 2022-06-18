@@ -32,6 +32,11 @@ pub fn run() {
     duplicate.sort();
     duplicate.dedup();
     println!("Duplicate: {:?}", duplicate);
+
+    //? Sorting an Array ->
+    let mut chaos = [3, 5, 4, 1, 2];
+    chaos.sort();
+    assert_eq!(chaos, [1, 2, 3, 4, 5]);
 }
 
 pub fn thruthy_sieve(data: &mut [bool]) {
