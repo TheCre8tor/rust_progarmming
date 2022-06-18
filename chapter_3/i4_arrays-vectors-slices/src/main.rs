@@ -4,9 +4,13 @@ mod array;
 #[path = "./vector.rs"]
 mod vector;
 
+#[path = "./slices.rs"]
+mod slices;
+
 fn main() {
     array::run();
     vector::run();
+    slices::run();
 
     /*
         Rust has three types for representing a
