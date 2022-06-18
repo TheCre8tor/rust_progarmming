@@ -1,4 +1,9 @@
+#[path = "./array.rs"]
+mod array;
+
 fn main() {
+    array::run();
+
     /*
         Rust has three types for representing a
         sequence of values in memory:
