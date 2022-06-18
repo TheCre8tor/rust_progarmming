@@ -1,8 +1,12 @@
 #[path = "./array.rs"]
 mod array;
 
+#[path = "./vector.rs"]
+mod vector;
+
 fn main() {
     array::run();
+    vector::run();
 
     /*
         Rust has three types for representing a
