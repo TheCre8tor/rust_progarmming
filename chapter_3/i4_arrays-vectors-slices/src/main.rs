@@ -7,10 +7,14 @@ mod vector;
 #[path = "./slices.rs"]
 mod slices;
 
+#[path = "./string_type.rs"]
+mod string_type;
+
 fn main() {
     array::run();
     vector::run();
     slices::run();
+    string_type::run();
 
     /*
         Rust has three types for representing a
