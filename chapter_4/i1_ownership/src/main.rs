@@ -1,4 +1,10 @@
+struct Person {
+    name: String,
+    birth: i32,
+}
+
 fn main() {
+    // --- LECTURE: 1
     /*
        ? A variable owns it value.
        * When control leaves block in which the variable
@@ -8,6 +14,7 @@ fn main() {
 
     print_padovan();
 
+    // --- LECTURE: 2
     {
         /*
            ? When the program calls Box::new, it allocates space
@@ -21,6 +28,34 @@ fn main() {
 
         assert_eq!(label, "(0.625, 0.5)");
     } // both dropped here
+
+    // --- LECTURE: 3
+    /* ****************************
+     * Just as variables own their values,
+     * structs own their fields;
+     * and tuples, arrays, and vectors own their elements
+     */
+
+    let mut composers = Vec::new();
+
+    composers.push(Person {
+        name: "Palestrina".to_string(),
+        birth: 1525,
+    });
+
+    composers.push(Person {
+        name: "Dowland".to_string(),
+        birth: 1563,
+    });
+
+    composers.push(Person {
+        name: "Lully".to_string(),
+        birth: 1632,
+    });
+
+    for composer in &composers {
+        println!("{}, born {}", composer.name, composer.birth);
+    }
 }
 
 fn print_padovan() {
