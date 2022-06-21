@@ -39,6 +39,9 @@ pub fn run() {
        This time, `o` has taken ownership of the original string
        from t , so that by the time we assign to t , it is
        uninitialized. In this scenario, no string is dropped.
+
+       NOTE: Moves always apply to the value proper, not the heap
+             storage they own.
     */
     let mut t = "Govinda".to_string();
     let o = t;
