@@ -21,4 +21,29 @@ pub fn run() {
     let _z = p.clone();
 
     // LECTURE 2: More Operations That Move
+    /* *****************************************
+       Assigning to a variable is slightly different, in that
+       if you move a value into a variable that was already
+       initialized, Rust drops the variable’s prior value.
+    */
+
+    /* In this code, when the program assigns the string
+       "Siddhartha" to s , its prior value "Govinda" gets
+       dropped first.
+    */
+
+    let mut _s = "Govinda".to_string();
+    _s = "Siddhartha".to_string(); // value "Govinda" dropped here
+
+    /* But consider the following:
+       This time, `o` has taken ownership of the original string
+       from t , so that by the time we assign to t , it is
+       uninitialized. In this scenario, no string is dropped.
+    */
+    let mut t = "Govinda".to_string();
+    let o = t;
+    t = "Siddhartha".to_string(); // nothing is dropped here.
+
+    println!("t: {}", t);
+    println!("o: {}", o);
 }
