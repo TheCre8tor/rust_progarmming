@@ -45,4 +45,13 @@ pub fn run() {
     assert!(s.contains("shira"));
     assert_eq!(t.find("taki"), Some(5));
     println!("{} are quite chewy, almost bouncy, but lack flavour", u);
+
+    // A value owned by an Rc pointer is immutable.
+    // s.push_str(" noodles"); // -> cannot borrow data in an `Rc` as mutable.
+
+    /* NOTE: One well-known problem with using reference counts to manage
+             memory is that, if there are ever two reference-counted values
+             that point to each other, each will hold the other’s reference
+             count above zero, so the values will never be freed
+    */
 }
