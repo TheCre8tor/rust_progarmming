@@ -38,6 +38,12 @@ fn main() {
 
     let mut composers = Vec::new();
 
+    /* composers owns a vector;
+       the vector owns its elements, each of which is a Person structure;
+       each structure owns its fields;
+       and the string field owns its text.
+    */
+
     composers.push(Person {
         name: "Palestrina".to_string(),
         birth: 1525,
