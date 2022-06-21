@@ -29,10 +29,16 @@ fn main() {
         ],
     );
 
-    show(table);
+    /* References are non-owning pointers, so the table variable
+       remains the owner of the entire structure; `show` has just
+       borrowed it for a bit.
+    */
+
+    show(&table);
+    assert_eq!(table["Gesualdo"][0], "many madrigals");
 }
 
-fn show(table: Table) {
+fn show(table: &Table) {
     for (artist, works) in table {
         println!("works by {}: ", artist);
 
