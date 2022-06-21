@@ -35,7 +35,9 @@ fn main() {
     */
 
     show(&table);
-    assert_eq!(table["Gesualdo"][0], "many madrigals");
+    sort_works(&mut table);
+
+    // assert_eq!(table["Gesualdo"][0], "many madrigals");
 }
 
 fn show(table: &Table) {
@@ -45,5 +47,11 @@ fn show(table: &Table) {
         for work in works {
             println!(" {}", work);
         }
+    }
+}
+
+fn sort_works(table: &mut Table) {
+    for (_artist, works) in table {
+        works.sort();
     }
 }
