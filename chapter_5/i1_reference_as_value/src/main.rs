@@ -2,6 +2,9 @@ use std::collections::HashMap;
 
 type Table = HashMap<String, Vec<String>>;
 
+#[path = "./references_as_values.rs"]
+mod references_as_values;
+
 fn main() {
     let mut table = Table::new();
 
@@ -38,6 +41,9 @@ fn main() {
     sort_works(&mut table);
 
     // assert_eq!(table["Gesualdo"][0], "many madrigals");
+
+    // LECTURE: 2 ->
+    references_as_values::run();
 }
 
 fn show(table: &Table) {
