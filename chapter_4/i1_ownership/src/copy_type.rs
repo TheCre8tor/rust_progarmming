@@ -35,7 +35,8 @@ pub fn run() {
        attribute #[derive(Copy, Clone)] above the definition
     */
 
-    #[derive(Copy, Clone)]
+    // 1. Without Clone and Copy Trait ->
+
     struct Label {
         number: i32,
     }
@@ -48,5 +49,22 @@ pub fn run() {
 
     print(l);
 
-    println!("My label number is: {}", l.number);
+    // println!("My label number is: {}", l.number); // borrow of moved value: `l`
+
+    // 2. With Clone and Copy Trait ->
+
+    #[derive(Clone, Copy)]
+    struct StringLabel {
+        number: i32,
+    }
+
+    fn printfn(x: StringLabel) {
+        println!("STRING: {}", x.number);
+    }
+
+    let str = StringLabel { number: 67 };
+
+    printfn(str);
+
+    println!("My label number is: {}", str.number);
 }
