@@ -1,3 +1,6 @@
+#[path = "./move.rs"]
+mod moves;
+
 struct Person {
     name: String,
     birth: i32,
@@ -62,6 +65,9 @@ fn main() {
     for composer in &composers {
         println!("{}, born {}", composer.name, composer.birth);
     }
+
+    // --- LECTURE: 4
+    moves::run();
 }
 
 fn print_padovan() {
