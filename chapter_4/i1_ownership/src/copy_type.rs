@@ -30,7 +30,12 @@ pub fn run() {
     */
 
     // By default, struct and enum types are not Copy:
+    /* If all the fields of your struct are themselves Copy,
+       then you can make the type Copy as well by placing the
+       attribute #[derive(Copy, Clone)] above the definition
+    */
 
+    #[derive(Copy, Clone)]
     struct Label {
         number: i32,
     }
@@ -43,5 +48,5 @@ pub fn run() {
 
     print(l);
 
-    // println!("My label number is: {}", l.number); // borrow of moved value: `l` value borrow here after move
+    println!("My label number is: {}", l.number);
 }
