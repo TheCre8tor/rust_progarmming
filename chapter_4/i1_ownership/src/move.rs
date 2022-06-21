@@ -49,4 +49,17 @@ pub fn run() {
 
     println!("t: {}", t);
     println!("o: {}", o);
+
+    // LECTURE 3: Moves and Indexed Content
+
+    // Build a vector of the strings "101", "102", ... "105"
+    let mut v = Vec::new();
+
+    for i in 101..106 {
+        v.push(i.to_string());
+    }
+
+    // Pull out random elements from the vector.
+    let _third = &v[2];
+    let _fifth = &v[4];
 }

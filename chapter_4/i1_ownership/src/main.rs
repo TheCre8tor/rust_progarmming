@@ -1,6 +1,9 @@
 #[path = "./move.rs"]
 mod moves;
 
+#[path = "./copy_type.rs"]
+mod copy_type;
+
 struct Person {
     name: String,
     birth: i32,
@@ -68,6 +71,7 @@ fn main() {
 
     // --- LECTURE: 4
     moves::run();
+    copy_type::run();
 }
 
 fn print_padovan() {
