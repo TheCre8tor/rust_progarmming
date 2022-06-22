@@ -10,6 +10,9 @@ mod structs_containing_references;
 #[path = "./i6_distinct_lifetime_parameters.rs"]
 mod distinct_lifetime_parameters;
 
+#[path = "./i7_omitting_lifetime_parameters.rs"]
+mod omitting_lifetime_parameters;
+
 fn main() {
     /* Rust’s equivalent of a global variable is called
        a static: it’s a value that’s created when the
@@ -38,4 +41,5 @@ fn main() {
     returning_references::run();
     structs_containing_references::run();
     distinct_lifetime_parameters::run();
+    omitting_lifetime_parameters::run();
 }
