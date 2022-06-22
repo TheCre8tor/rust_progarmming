@@ -1,3 +1,6 @@
+#[path = "./passing_ref_as_args.rs"]
+mod passing_ref_as_args;
+
 fn main() {
     /* Rust’s equivalent of a global variable is called
        a static: it’s a value that’s created when the
@@ -20,4 +23,7 @@ fn main() {
     }
 
     f(&WORTH_POINTING_AT);
+
+    // LECTURE: 2
+    passing_ref_as_args::run();
 }
