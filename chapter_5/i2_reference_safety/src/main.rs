@@ -1,8 +1,11 @@
-#[path = "./passing_ref_as_args.rs"]
+#[path = "./i3_passing_ref_as_args.rs"]
 mod passing_ref_as_args;
 
-#[path = "./returning_references.rs"]
+#[path = "./i4_returning_references.rs"]
 mod returning_references;
+
+#[path = "./i5_structs_containing_references.rs"]
+mod structs_containing_references;
 
 fn main() {
     /* Rust’s equivalent of a global variable is called
@@ -30,4 +33,5 @@ fn main() {
     // LECTURE: 2
     passing_ref_as_args::run();
     returning_references::run();
+    structs_containing_references::run();
 }
