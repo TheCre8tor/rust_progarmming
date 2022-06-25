@@ -1,4 +1,5 @@
 pub mod plant_structures;
+use plant_structures::leaves::Likes;
 
 /* The use declaration causes the name mem to
    be a local alias for ::std::mem throughout
@@ -8,12 +9,17 @@ pub mod plant_structures;
    absolute paths, so there is no need for a
    leading ::
 */
-use std::mem;
+use std::{collections::HashMap, mem};
 
 fn main() {
     println!("Hello, world!");
 
     plant_structures::leaves::get();
+
+    let _ = Likes {
+        love: false,
+        hate: false,
+    };
 
     if 1 > 2 {
         /* This function name, ::std::collections::HashMap, is an
@@ -29,4 +35,8 @@ fn main() {
     if 2 < 1 {
         mem::swap(&mut 1, &mut 2);
     }
+
+    // Type Aliases
+
+    type _Table = HashMap<String, Vec<String>>;
 }
