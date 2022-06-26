@@ -1,1 +1,0 @@
-window.ALL_CRATES = ["i3_turning_program_into_libary"];
