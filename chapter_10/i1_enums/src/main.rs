@@ -65,8 +65,8 @@ fn main() {
        Otherwise Rust will assign the numbers for you, starting at 0.
     */
 
-    // The size of HttpStatus with its variants altogether is 16bit.
-    assert_eq!(size_of::<HttpStatus>(), 2);
+    // As of Rust 1.17, RoughTime fits in 8 bytes
+    assert_eq!(size_of::<RoughTime>(), 8);
 
     // EXAMPLE 2 ->
     let word = TimeUnit::Days;
