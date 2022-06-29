@@ -77,6 +77,16 @@ fn main() {
     collect(word);
 
     // EXAMPLE 3 ->
+    let four_score_and_seven_years_ago = RoughTime::InThePast(TimeUnit::Years, 4 * 20 + 7);
+    let three_hours_from_now = RoughTime::InTheFuture(TimeUnit::Hours, 3);
+    println!("{:?}", four_score_and_seven_years_ago);
+    println!("{:?}", three_hours_from_now);
+
+    /* Rust 🦀 has three kinds of enum variant.
+       1. Variants with no data correspond to unit-like structs.
+       2. Tuple variants look and function just like tuple structs.
+       3. Struct variants have curly braces and named fields.
+    */
 }
 
 fn collect(data: TimeUnit) {
