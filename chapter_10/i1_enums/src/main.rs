@@ -87,6 +87,8 @@ fn main() {
        2. Tuple variants look and function just like tuple structs.
        3. Struct variants have curly braces and named fields.
     */
+
+    // Example 4 ->
 }
 
 fn collect(data: TimeUnit) {
