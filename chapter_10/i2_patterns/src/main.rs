@@ -1,3 +1,5 @@
+mod i1_literals_variables_and_widecards;
+
 #[derive(Copy, Clone, Debug, PartialEq)]
 enum TimeUnit {
     Seconds,
@@ -39,6 +41,9 @@ fn main() {
 
     let print_date = rough_time_to_english(a_month_from_now);
     println!("{}", print_date);
+
+    // import modules ->
+    i1_literals_variables_and_widecards::run();
 }
 
 fn rough_time_to_english(rt: RoughTime) -> String {
