@@ -1,3 +1,5 @@
+mod i1_traits_objects;
+
 fn main() {
-    println!("Hello, world!");
+    i1_traits_objects::run();
 }
