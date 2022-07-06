@@ -1,8 +1,10 @@
+#[derive(Debug)]
 enum BinaryTree<T> {
     Empty,
     NonEmpty(Box<TreeNode<T>>),
 }
 
+#[derive(Debug)]
 struct TreeNode<T> {
     element: T,
     left: BinaryTree<T>,
@@ -30,4 +32,11 @@ impl<T: Ord> BinaryTree<T> {
     }
 }
 
-pub fn run() {}
+pub fn run() {
+    let mut tree = BinaryTree::Empty;
+    tree.add("Mecury");
+    tree.add("Venus");
+    tree.add("Earth");
+
+    println!("{:#?}", tree);
+}
