@@ -2,7 +2,7 @@ use std::{
     collections::btree_map::Values,
     fmt::Debug,
     fs::File,
-    hash::Hash,
+    hash::{Hash, Hasher},
     io::{Result, Write},
 };
 
@@ -46,4 +46,14 @@ where
     R: Debug + Hash + Eq,
 {
     Ok(())
+}
+
+// A generic function can have both lifetime parameters
+// and type parameters.
+
+fn nearest<'t, 'c, P>(target: &'t P, candidates: &'c [P]) -> &'c P
+where
+    P: Hasher + Debug,
+{
+    &candidates[0]
 }
