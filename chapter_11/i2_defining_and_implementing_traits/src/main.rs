@@ -28,3 +28,13 @@ trait Visible {
     /// select this object.
     fn hit_test(&self, x: i32, y: i32);
 }
+
+impl Visible for Broom {
+    fn draw(&self, canvas: &mut Canvas) {
+        todo!()
+    }
+
+    fn hit_test(&self, x: i32, y: i32) {
+        todo!()
+    }
+}
